@@ -25,7 +25,6 @@ class CarSerializer(serializers.ModelSerializer):
         model = CarModel
         fields = ('id', 'model', 'year', 'seats', 'type', 'engine_v', 'created_at', 'updated_at')
         extra_kwargs = {
-            'id': {'read_only': True},
             # 'seats': {'write_only': True},
             # 'type': {'write_only': True},
             # 'engine_v': {'write_only': True}

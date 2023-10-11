@@ -23,9 +23,7 @@ from .models import CarModel
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
-        fields = ('id', 'model', 'year', 'seats', 'type', 'engine_v', 'created_at', 'updated_at')
+        fields = ('id', 'model', 'year', 'price', 'created_at', 'updated_at', 'auto_park_id')
+        read_only_fields = ('created_at', 'updated_at')
         extra_kwargs = {
-            # 'seats': {'write_only': True},
-            # 'type': {'write_only': True},
-            # 'engine_v': {'write_only': True}
         }

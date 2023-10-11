@@ -7,15 +7,14 @@ name = "pypi"
 asgiref = "==3.7.2"
 django = "==4.2.5"
 djangorestframework = "==3.14.0"
-mysqlclient = "==2.2.0"
+mysqlclient = "*"
 pytz = "==2023.3.post1"
 sqlparse = "==0.4.4"
 tzdata = "==2023.3"
-django-dotenv = "*"
+python-dotenv = "*"
 
 [dev-packages]
 isort = "*"
-
 
 [requires]
 python_version = "3.11"

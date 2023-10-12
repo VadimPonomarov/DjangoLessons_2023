@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from .models import AutoParksModel
 from .serializers import AutoParkSerializer
 from ..cars.serializers import CarSerializer
-from ..users.models import UserModel
 from ..users.serializers import UsersSerializer
 
 
@@ -40,4 +39,3 @@ class AutoParkAddUserView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(auto_park=auto_park)
         return Response(serializer.data, status=status.HTTP_200_OK)
-

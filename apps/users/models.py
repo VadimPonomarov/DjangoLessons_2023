@@ -9,3 +9,4 @@ class UserModel(BaseModel):
     email = models.CharField(max_length=25, unique=True, validators=[V.EmailValidator()])
     class Meta:
         db_table = 'users'
+        ordering = ['id']

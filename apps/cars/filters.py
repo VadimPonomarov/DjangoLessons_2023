@@ -4,11 +4,21 @@ from .models import CarModel
 
 
 class CarFilter(filters.FilterSet):
-    year = filters.NumberFilter('year', 'exact')
-    order = filters.OrderingFilter(
-        fields=['id', 'year']
-    )
+    class Meta:
+        model = CarModel
+        fields = {
+            'id': ['lte', 'gte', 'exact'],
+            'year': ['lte', 'gte', 'exact'],
+            'model': ['startswith', 'endswith', 'contains'],
+        }
 
-    # class Meta:
-    #     model = CarModel
-    #     fields = ['id', 'year']
+    order = filters.OrderingFilter(
+        fields=(
+            ('id', 'id ASC'),
+            ('-id', 'id DESC'),
+            ('year', 'year ASC'),
+            ('-year', 'year DESC'),
+            ('model', 'model ASC'),
+            ('-model', 'model DESC'),
+        )
+    )

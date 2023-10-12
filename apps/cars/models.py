@@ -11,6 +11,7 @@ from core.models import BaseModel
 class CarModel(BaseModel):
     class Meta:
         db_table = 'cars'
+        ordering = ['id']
 
     model = models.CharField(max_length=25, validators=[V.MinLengthValidator(2), V.MaxLengthValidator(25)])
     year = models.IntegerField(validators=[V.MaxValueValidator(datetime.datetime.now().year)])

@@ -23,7 +23,8 @@ from .models import CarModel
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
-        fields = ('id', 'model', 'year', 'price', 'created_at', 'updated_at', 'auto_park_id')
-        read_only_fields = ('created_at', 'updated_at')
+        fields = ('id', 'model', 'year', 'price', 'auto_park_id')
         extra_kwargs = {
+            'created_at': {'write_only': True},
+            'updated_at': {'write_only': True},
         }

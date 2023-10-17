@@ -1,30 +1,14 @@
-from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, GenericAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.response import Response
+from django.db.models import Q
+from rest_framework.generics import ListCreateAPIView
 
-from .models import UserModel
-from .serializers import UsersSerializer
-from ..autoparks.serializers import AutoParkSerializer
-
-
-class UserListCreateView(ListCreateAPIView):
-    queryset = UserModel.objects.all()
-    serializer_class = UsersSerializer
+from apps.users.models import UserModel
+from apps.users.serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
-class UserRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    queryset = UserModel.objects.all()
-    serializer_class = UsersSerializer
+class UserCreateView(ListCreateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, ]
 
-
-class UserAddReadAutoParkView(GenericAPIView):
-    queryset = UserModel.objects.all()
-    serializer_class = UsersSerializer
-
-    def post(self, *args, **kwargs):
-        user = self.get_object()
-        serializer = AutoParkSerializer(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+    def get_queryset(self):
+        return UserModel.objects.filter(Q(id__gt=self.request.user.pk) | Q(id__lt=self.request.user.pk)).all()

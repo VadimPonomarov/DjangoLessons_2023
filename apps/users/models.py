@@ -5,6 +5,7 @@ from core.models import BaseModel
 from .managers import UserManager
 from .regex import UserRegEx
 from django.db import models
+from core.services import upload_avatar
 
 
 class ProfileModel(BaseModel):
@@ -12,11 +13,12 @@ class ProfileModel(BaseModel):
         db_table = 'profile'
         ordering = ['id']
 
-    name = models.CharField(max_length=25,
+    name = models.CharField(blank=True, max_length=25,
                             validators=[V.RegexValidator(UserRegEx.NAME_SURNAME.pattern, UserRegEx.NAME_SURNAME.msg)])
-    surname = models.CharField(max_length=25, validators=[
+    surname = models.CharField(blank=True, max_length=25, validators=[
         V.RegexValidator(UserRegEx.NAME_SURNAME.pattern, UserRegEx.NAME_SURNAME.msg)])
-    age = models.IntegerField()
+    age = models.IntegerField( null=True)
+    avatar = models.ImageField(upload_to=upload_avatar, blank=True)
 
 
 class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):

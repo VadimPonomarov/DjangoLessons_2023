@@ -9,12 +9,8 @@ class AutoParkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AutoParksModel
-        fields = ('id', 'name', 'cars')
+        fields = ('id', 'name', 'cars', 'created_at', 'updated_at')
         read_only_fields = ('cars',)
-        extra_kwargs = {
-            'created_at': {'write_only': True},
-            'updated_at': {'write_only': True},
-        }
 
 
 class AutoParkWithoutCarsSerializer(serializers.ModelSerializer):

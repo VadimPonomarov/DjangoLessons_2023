@@ -1,9 +1,11 @@
+from django.conf.urls.static import static
 from django.urls import path, include
 
 from apps.cars import urls as cars
 from apps.autoparks import urls as auto_parks
 from apps.auth import urls as auth
 from apps.users import urls as users
+from configs import settings
 
 urlpatterns = [
     path('cars', include(cars)),
@@ -11,3 +13,5 @@ urlpatterns = [
     path('auth', include(auth)),
     path('users', include(users)),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

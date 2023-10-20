@@ -7,7 +7,7 @@ class UserRegEx(Enum):
         'Name is a string. First letter is capitalized, min 3 max 25 characters'
     )
     PASSWORD = (
-        r'^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$',
+        r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$',
         'Checks that a password has a minimum of 6 characters, at least 1 uppercase letter, 1 lowercase letter, and 1 number with no spaces.'
     )
 

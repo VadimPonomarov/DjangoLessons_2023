@@ -1,12 +1,14 @@
 import re
-
+from django.core import validators as V
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from apps.users.models import UserModel, ProfileModel
 from django.db.transaction import atomic
 
+from apps.users.regex import UserRegEx
 from core.dataclasses import UserDataClass, ProfileDataClass
+from core.services.email import EmailService
 
 UserModel = get_user_model()
 
@@ -69,4 +71,14 @@ class UserSerializer(serializers.ModelSerializer):
         profile = validated_data.pop('profile')
         profile = ProfileModel.objects.create(**profile)
         user = UserModel.objects.create_user(profile=profile, **validated_data)
+        EmailService.register_email(user)
         return user
+
+
+class RecoveryEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class RecoveryPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(max_length=255,
+                                     validators=[V.RegexValidator(UserRegEx.PASSWORD.pattern, UserRegEx.PASSWORD.msg)])

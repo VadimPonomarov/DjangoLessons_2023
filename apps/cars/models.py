@@ -6,7 +6,7 @@ from apps.autoparks.models import AutoParksModel
 from django.core import validators as V
 
 from core.models import BaseModel
-from core.services import upload_car_image
+from core.services.common.services import upload_car_image
 
 
 class CarModel(BaseModel):

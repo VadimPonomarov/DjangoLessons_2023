@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profilemodel',
             name='profile',
-            field=models.ImageField(blank=True, upload_to=core.services.services.upload_avatar),
+            field=models.ImageField(blank=True, upload_to=core.services.common.services.upload_avatar),
         ),
     ]

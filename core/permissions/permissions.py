@@ -13,3 +13,8 @@ class ReadAuthenticated_CUDAdminPermission(BasePermission):
         if request.method == 'GET':
             return bool(request.user and request.user.is_active)
         return bool(request.user and request.user.is_staff and request.user.is_active)
+
+
+class IsStaffOnlyPermission(BasePermission):
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_staff and request.user.is_active and not request.user.is_superuser)

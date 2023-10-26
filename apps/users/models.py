@@ -2,10 +2,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core import validators as V
 
 from core.models import BaseModel
+from core.services.common.services import upload_avatar
 from .managers import UserManager
 from .regex import UserRegEx
 from django.db import models
-from core.services import upload_avatar
 
 
 class ProfileModel(BaseModel):

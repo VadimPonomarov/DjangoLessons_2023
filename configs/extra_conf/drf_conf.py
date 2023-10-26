@@ -6,5 +6,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', ],
-    'DEFAULT_PERMISSION_CLASSES': ['core.permissions.SuperAdminPermission']
+    'DEFAULT_PERMISSION_CLASSES': ['core.permissions.SuperAdminPermission'],
+    'EXCEPTION_HANDLER': 'core.handlers.error_handler.error_handler'
 }

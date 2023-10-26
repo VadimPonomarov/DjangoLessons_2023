@@ -79,6 +79,7 @@ class RecoveryEmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 
-class RecoveryPasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(max_length=255,
-                                     validators=[V.RegexValidator(UserRegEx.PASSWORD.pattern, UserRegEx.PASSWORD.msg)])
+class RecoveryPasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ['password']

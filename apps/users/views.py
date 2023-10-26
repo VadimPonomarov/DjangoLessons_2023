@@ -64,14 +64,14 @@ class UserActivateView(GenericAPIView):
 
 class UserUpdatePasswordView(GenericAPIView):
     permission_classes = [AllowAny]
-    queryset = UserModel.objects.all()
+    serializer_class = RecoveryPasswordSerializer
 
     def post(self, *args, **kwargs):
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
         token: Token = kwargs.get('token')
         user = JWTService.validate_token(token, RecoveryToken)
         password = self.request.data.get('password')
-        serializer = RecoveryPasswordSerializer(data={'password': password})
-        serializer.is_valid(raise_exception=True)
         user.set_password(password)
         user.save()
         return Response('Ok', status.HTTP_200_OK)

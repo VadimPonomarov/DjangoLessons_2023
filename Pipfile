@@ -19,6 +19,13 @@ pillow = "*"
 django-cors-headers = "*"
 graphene-django = "*"
 graphene-django-filter = "*"
+django-graphql-jwt = "*"
+django-graphql-auth = "*"
+drf-yasg = "*"
+celery = "*"
+redis = "*"
+django-celery-results = "*"
+django-celery-beat = "*"
 
 [dev-packages]
 isort = "*"

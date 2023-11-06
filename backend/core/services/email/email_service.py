@@ -2,7 +2,6 @@ import os
 from dataclasses import dataclass, field
 from typing import Type
 
-from celery.app import task
 from django.core.mail import EmailMultiAlternatives
 from django.template import Template
 from django.template.loader import get_template

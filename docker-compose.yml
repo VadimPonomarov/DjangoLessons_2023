@@ -8,8 +8,8 @@ services:
       - ./backend:/app
     env_file:
       - .env
-#    ports:
-#      - "8000:8000"
+    #    ports:
+    #      - "8000:8000"
     restart: on-failure
     command: >
       sh -c "python manage.py wait_db && python manage.py runserver 0.0.0.0:8000"
@@ -42,8 +42,8 @@ services:
       - .env
     restart: on-failure
     command: >
-      sh -c "celery -A configs worker -l info -B"
-    #      sh -c "celery -A configs worker -l info"
+      sh -c "celery -A configs worker -l info"
+  #      sh -c "celery -A configs worker -l info -B"
 
   redis:
     image: redis:alpine

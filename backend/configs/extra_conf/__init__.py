@@ -5,4 +5,4 @@ from .email_conf import *
 from .graphene_conf import *
 from .graphQL_jwt_conf import *
 from .drf_yasg_conf import *
-from .celeryconfig import *
+from .celery_conf import *
